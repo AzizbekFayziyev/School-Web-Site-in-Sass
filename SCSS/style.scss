@@ -1,0 +1,637 @@
+// GLOBAL  😜
+
+$global-color:#f3ce53;
+$dark-color: #212529;
+
+::selection {
+    color: $global-color;
+    background-color: $dark-color;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: $global-color;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $dark-color;
+    border-radius: 50px;
+}
+
+::-webkit-input-placeholder {
+    font-weight: 500;
+    font-family: serif, sans-serif;
+}
+
+
+@mixin btnGlobal($p, $fs) {
+    background-color: $global-color !important;
+    color: $dark-color;
+    font-weight: $fs;
+    transition: 0.3s all ease;
+    padding: $p;
+
+    &:hover {
+        background-color: transparent !important;
+        border: 1px solid #f3ce53;
+        color: #f3ce53;
+    }
+
+}
+
+@mixin menuLink() {
+    position: relative;
+    color: whitesmoke !important;
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: 0.5s all ease;
+    text-decoration: none;
+
+    &:hover {
+        color: $global-color !important;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: #f3ce53;
+        transition: 0.5s all ease;
+    }
+
+    &:hover::before {
+        width: 100%;
+    }
+}
+
+// GLOBAL STYLES
+
+html {
+    overflow-x: hidden !important;
+
+    body {
+        background-color: #ddd;
+        position: relative;
+        overflow-x: hidden !important;
+    }
+}
+
+.line {
+    position: relative;
+    width: 180px;
+    height: 4px;
+    background: rgb(52, 52, 52);
+    margin: 10px auto;
+    border-radius: 4px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -9px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: $global-color;
+        animation: lineItem 3s linear infinite;
+        box-shadow: 1px 1px 15px #ffffff;
+    }
+}
+
+@keyframes lineItem {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(160px);
+    }
+}
+
+span {
+    color: #f3ce53;
+}
+
+.Maintext {
+    text-align: center;
+    margin: 50px 0;
+
+    h1 {
+        margin-bottom: 20px;
+        color: $dark-color;
+        font-family: sans-serif;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+}
+
+
+
+
+// NAVBAR-STYLES
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    z-index: 99;
+    width: 100%;
+
+    h1 {
+        color: $global-color;
+        font-family: fantasy, sans-serif;
+        letter-spacing: 4px;
+    }
+
+    ul {
+        a {
+            @include menuLink();
+        }
+    }
+
+    .btn {
+        @include btnGlobal(8px, 500);
+    }
+
+    #menu-border {
+        display: none;
+        padding: 16px 10px;
+        border: 2px solid #f3ce53;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.8s all ease;
+
+        #mobMenu {
+            position: relative;
+            width: 30px;
+            height: 2px;
+            background-color: #f3ce53;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -8px;
+                right: 0;
+                width: 35px;
+                height: 2px;
+                background-color: #f3ce53;
+
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: -8px;
+                right: 0;
+                width: 20px;
+                height: 2px;
+                background-color: #f3ce53;
+
+            }
+        }
+    }
+
+}
+
+#mobMenu-list {
+    transform: translateY(-100%);
+    visibility: hidden;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    border-top: 1px solid #f3ce53;
+
+    li {
+        margin-top: 10px;
+    }
+
+    li {
+        a {
+            @include menuLink();
+        }
+    }
+
+    .btn {
+        @include btnGlobal(8px, 500);
+        margin-top: 16px;
+    }
+}
+
+.mobMenu-list-actived {
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+.menuBtn-active {
+    transform: rotateY(360deg);
+}
+
+
+// HOME STYLES
+
+#home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(../img/bg-home.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #313233af;
+        backdrop-filter: blur(3.5px);
+    }
+
+    .mainIcon {
+        font-size: 100px;
+        margin: 20px 0;
+    }
+
+    .text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        color: whitesmoke;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        max-width: 600px;
+
+        h1 {
+            font-size: 50px;
+            text-transform: capitalize;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+
+
+        .contact {
+            margin-top: 30px !important;
+            width: 350px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            button {
+                @include btnGlobal(12px 15px, 700);
+            }
+        }
+    }
+}
+
+// ABOUT STYLES
+
+#about {
+
+
+    .about {
+        box-shadow: 5px 5px 5px gray;
+        overflow: hidden;
+        border-radius: 4px;
+        margin: 0 auto;
+
+
+        .slide {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            border-radius: 8px;
+
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .text {
+            padding: 0 15px;
+            margin-top: 10px;
+            text-align: justify;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            h3 {
+                text-align: center;
+                color: $dark-color;
+                font-family: serif;
+            }
+
+            p {
+                color: gray;
+                font-family: sans-serif, serif;
+            }
+
+            .footer {
+                border-top: 1.5px solid rgb(161, 161, 161);
+                width: 100%;
+
+                button {
+                    @include btnGlobal(12px 15px, 700);
+                    margin: 20px auto;
+                    display: block;
+                }
+            }
+
+        }
+
+
+    }
+
+    .about-numbers {
+        text-align: center;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background: url(../img/bg-about.jpg) no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 20px;
+
+        .number-card {
+            margin: 10px auto;
+            background-color: whitesmoke;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            height: 150px;
+            transition: 0.5s all ease;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.357);
+                border: 2px solid #f3ce53;
+                backdrop-filter: blur(5px);
+
+                i {
+                    color: whitesmoke;
+                }
+
+                p {
+                    color: whitesmoke;
+                }
+
+            }
+
+            i {
+                font-size: 40px !important;
+                margin: 5px 0;
+            }
+
+            h4 {
+                font-weight: 900;
+                font-size: 28px;
+                color: rgb(238, 202, 24);
+            }
+
+            p {
+                font-size: 18px;
+                font-weight: bold;
+                color: $dark-color;
+                font-family: serif;
+            }
+        }
+    }
+
+}
+
+// Learn-Section
+
+#learn {
+    .courses {
+        .card-course {
+            margin: 20px auto;
+            padding: 15px;
+            height: 480px;
+            max-width: 370px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: whitesmoke;
+
+            li {
+                list-style-type: none;
+            }
+
+            h3 {
+                padding: 2px;
+                text-align: center;
+                font-family: serif;
+                font-weight: 600;
+                color: whitesmoke;
+                background-color: #f8c009;
+                border-radius: 20px;
+            }
+
+            .footer a {
+                margin: 0 5px;
+
+                i {
+                    margin: 0 5px;
+                }
+
+                &:hover {
+                    i {
+                        transform: translateX(5px);
+                        color: $global-color;
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 250px;
+                border-radius: 4px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+// Books
+
+#book {
+    .classes {
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        max-width: 600px !important;
+        margin: 0 auto;
+
+        .card {
+
+            flex: none;
+            margin: 20px auto;
+            width: 100% !important;
+            border-radius: 10px;
+            scroll-snap-align: start;
+
+            &:hover {
+                border: 2px dotted gray;
+            }
+
+            img {
+                min-width: 100% !important;
+                height: 280px;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
+// contact
+
+#contact {
+    .map {
+        width: 100%;
+
+        iframe {
+            margin: 20px auto;
+            display: block;
+            width: 100% !important;
+        }
+    }
+
+    form {
+        border: 2px solid #f8c009;
+        border-radius: 8px;
+        padding: 18px;
+        max-width: 800px;
+        margin: 50px auto;
+
+        h3 {
+            padding-bottom: 5px;
+            margin: 18px 0;
+            font-family: serif;
+            border-bottom: 2px solid #f3ce53;
+        }
+
+        .btn {
+            @include btnGlobal(12px 15px, 700);
+            margin: 0 auto;
+            display: block;
+        }
+    }
+}
+
+// Footer
+
+footer{
+    background-color: $dark-color;
+    padding: 5px;
+
+    .footerMenu{
+        border-bottom: 2px solid gray;
+        li{
+            list-style-type: none;
+            display: inline-block;
+            margin: 10px 15px;
+            a{
+                @include menuLink()
+                
+            }
+        }
+    }
+
+    h3{
+        color: whitesmoke;
+        margin: 10px 0;
+        font-size: 20px;
+    }
+}
+
+
+// Responsive
+
+@media (max-width: 860px) {
+    .nav {
+        #menu-border {
+            display: block;
+        }
+
+        ul {
+            display: none;
+        }
+
+        button {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 620px) {
+    #home {
+
+        h1 {
+            font-size: 30px !important;
+        }
+
+        .contact {
+            justify-content: space-evenly !important;
+
+            button {
+                padding: 10px !important;
+            }
+        }
+
+        .mainIcon {
+            font-size: 60px;
+        }
+
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    html,
+    body {
+        min-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    #home {
+
+        h1 {
+            padding: 10px 50px !important;
+            font-size: 20px !important;
+        }
+
+        .contact {
+            margin: 0 50px;
+
+            button {
+                padding: 4px !important;
+            }
+        }
+
+    }
+}
